@@ -1,0 +1,31 @@
+* {
+  font-family: sans-serif;
+}
+
+body {
+  background-color: #eee
+}
+
+ul#navbar {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #ccc;
+}
+
+ul#navbar li {
+  float: left;
+}
+
+ul#navbar li a {
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 15px 15px;
+  text-decoration: none;
+}
+
+ul#navbar li a:hover {
+  background-color: #aaa;
+}
