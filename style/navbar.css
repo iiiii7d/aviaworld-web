@@ -1,33 +1,38 @@
-  ul#navbar {
+nav {
   list-style-type: none;
   margin: 0;
   padding: 0;
-  overflow: hidden;
+  width: 100vw;
+  /*height: 56px;*/
+  overflow-x: scroll;
+  /*overflow-y: hidden;*/
   background-color: #ccc;
+  text-align: left;
+  display: inline-block;
 }
 
-ul#navbar li {
+nav div.item {
   float: left;
 }
 
-ul#navbar li > a, ul#navbar li div.dropdownbutton {
-  display: block;
+nav div.item > a, nav div.item div.dropdownbutton {
+  display: inline-block;
   color: black;
   text-align: center;
   padding: 18px 19px;
   text-decoration: none;
 }
 
-ul#navbar li > a:hover, ul#navbar li div.dropdownbutton:hover {
+nav div.item > a:hover, nav div.item div.dropdownbutton:hover {
   background-color: #aaa;
   cursor: pointer;
 }
 
-ul#navbar li a:hover, ul#navbar li .dropdown:hover .dropdownbutton {
+nav div.item a:hover, nav div.item .dropdown:hover .dropdownbutton {
   background-color: #aaa;
 }
 
-ul#navbar li .dropdowncontent {
+nav div.item .dropdowncontent {
   display: none;
   position: absolute;
   background-color: #ccc;
@@ -35,7 +40,7 @@ ul#navbar li .dropdowncontent {
   z-index: 1;
 }
 
-ul#navbar li .dropdowncontent a {
+nav div.item .dropdowncontent a {
   color: black;
   padding: 12px 16px;
   text-decoration: none;
@@ -43,10 +48,10 @@ ul#navbar li .dropdowncontent a {
   text-align: left;
 }
 
-ul#navbar li .dropdowncontent a:hover {
+nav div.item .dropdowncontent a:hover {
   background-color: #aaa;
   }
 
-ul#navbar li .dropdown:hover .dropdowncontent {
+nav div.item .dropdown:hover .dropdowncontent {
   display: block;
 }
