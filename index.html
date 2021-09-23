@@ -3,20 +3,84 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
+    <meta name="author" content="Aviaworld">
+    <meta name="description" content="The air-centric city-building server">
     <title>Aviaworld</title>
-    <link href="style.css" rel="stylesheet" type="text/css" />
-    
-    <script defer src="script.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Overpass:wght@600&display=swap" rel="stylesheet">
+
+    <script src="https://kit.fontawesome.com/9fe3008556.js" crossorigin="anonymous"></script>    
+
+    <link href="style/global-style.css" rel="stylesheet" type="text/css" />
+    <link href="style/navbar.css" rel="stylesheet" type="text/css" />
+
+    <script src="https://unpkg.com/yall-js/dist/yall.min.js"></script>
+    <script src="https://unpkg.com/jquery/dist/jquery.js"></script>
+
+    <script src="scripts/navbar.js"></script>
+    <script src="scripts/footer.js"></script>
+    <script defer src="scripts/script.js"></script>
   </head>
   <body>
-    <header>
-      <ul id="navbar">
-        <li><div style="width: 100px; height: 50px; background-color: #ccc; display: inline-block;">insert logo</div></li>
-        <li><a href="">link</a></li>
-        <li><a href="">link</a></li>
-        <li><a href="">link</a></li>
-      </ul>
-    </header>
-    <b
+    <header style="background-color: #ccc; height: 56px;"></header>
+    <section id="banner" style="width: 100%; height: calc(100vh - 56px)">
+      <style>
+        #scrollbutton {
+          color: black;
+          text-decoration: none;
+        }
+        #scrollbutton:hover {
+          text-decoration: underline;
+        }
+        #scrollbutton:active {
+          color: #555;
+        }
+      </style>
+      <img class="lazy" style="object-fit: cover; width: 100%; height: 100%;" src="img/banner-thumbnail.png" data-src="img/banner.png">
+      <span style="position: absolute; top: calc(40% - 7.5vh); left: 15px; text-shadow: 2px 2px 6px #888;">
+        <span style="font-size: 15vh; font-size: min(15vh, 15vw);">The air-centric city-building server.</span><br>
+        <a id="scrollbutton" href="#intro" style="font-size: 7.5vh; font-size: min(7.5vh, 7.5vw);">Start your airline today <i class="fas fa-angle-down"></i></a>
+      </span>
+    </section>
+    <section id="intro" style="text-align: center;">
+      <script>
+        function copyIP() {
+          var copyText = document.querySelector("#ip");
+          copyText.hidden = false;
+          copyText.select();
+          document.execCommand("copy");
+          copyText.hidden = true;
+        }
+      </script><style>
+        #ipbutton {
+          background-color: #aaa;
+          padding: 2vh;
+          border-radius: 2vh;
+          -webkit-touch-callout: none;
+            -webkit-user-select: none;
+             -khtml-user-select: none;
+               -moz-user-select: none;
+                -ms-user-select: none;
+                    user-select: none;
+        }
+        #ipbutton:hover {
+          background-color: #888;
+          cursor: pointer;
+        }
+        #ipbutton:active {
+          background-color: #666;
+        }
+        #ipbutton > #copyicon {
+          color: #999;
+        }
+        #ipbutton:hover > #copyicon {
+          color: #000;
+        }
+      </style><br>
+      <span style="font-size: 10vh; font-size: max(10vh, 10vw);">IP: <span onclick="copyIP()" id="ipbutton">aviaworld.minefort.com <i id="copyicon" class="fa fa-copy"></i></span></span>
+      <input hidden type="text" id="ip" value="aviaworld.minefort.com"><br><br>
+    </section>
+    <footer></footer>
   </body>
 </html>

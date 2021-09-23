@@ -1,0 +1,12 @@
+* {
+  font-family: Overpass, sans-serif;
+}
+
+body {
+  background-color: #eee;
+  margin: 0px;
+}
+
+a {
+  color: inherit;
+}
