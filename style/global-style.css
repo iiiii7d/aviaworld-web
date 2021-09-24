@@ -1,5 +1,6 @@
 * {
   font-family: Overpass, sans-serif;
+  font-weight: 600;
 }
 
 body {
@@ -9,4 +10,8 @@ body {
 
 a {
   color: inherit;
+}
+
+li {
+  font-weight: 400;
 }
