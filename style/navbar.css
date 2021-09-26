@@ -8,7 +8,6 @@ nav {
   /*overflow-y: hidden;*/
   background-color: #ccc;
   text-align: left;
-  display: inline-block;
 }
 
 nav div.item {
