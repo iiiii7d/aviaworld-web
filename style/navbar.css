@@ -20,6 +20,12 @@ nav div.item > a, nav div.item div.dropdownbutton {
   text-align: center;
   padding: 18px 19px;
   text-decoration: none;
+  -webkit-touch-callout: none;
+    -webkit-user-select: none;
+     -khtml-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
 }
 
 nav div.item > a:hover, nav div.item div.dropdownbutton:hover {
