@@ -29,17 +29,18 @@ function setupPage() {
     yall();
     document.querySelectorAll('a').forEach(anchor => {
         anchor.addEventListener('click', e => {
+            let href = anchor.getAttribute("href")
             e.preventDefault();
-            if (anchor.getAttribute("href").startsWith("#")) {
+            if (href.startsWith("#")) {
                 console.log("a");
-                document.querySelector(anchor.getAttribute('href')).scrollIntoView({
+                document.querySelector(href).scrollIntoView({
                     behavior: 'smooth'
                 });
             }
-            else if (!anchor.getAttribute("href").startsWith("http")) {
-                history.pushState({href: anchor.getAttribute("href")}, "", anchor.getAttribute("href"));
+            else if (!href.startsWith("http")) {
+                history.pushState({href: href}, "", href);
                 //fadeOut(document.querySelector("main"));
-                $.get(anchor.getAttribute("href"), data => {
+                $.get((href=="/") ? "index.html" : href, data => {
                     let content = document.createElement("span");
                     content.innerHTML = data;
                     document.querySelector("main").innerHTML = content.querySelector("main").innerHTML;
