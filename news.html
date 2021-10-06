@@ -29,7 +29,7 @@
     <section style="background-color: #ddd; padding: 10px 20px;">
       &nbsp;&nbsp;<b style="font-size: 10vh;">News</b>
     </section>
-    <section style="padding: 10px 20px;">
+    <section id="articles" style="padding: 10px 20px;">
       <style>
         .title {
           font-size: 50px;
@@ -51,71 +51,45 @@
           font-weight: 400;
         }
       </style>
-      <article>
-        <span class="title">September 2021 Staff Meeting results</span><br>
+      <script src="https://unpkg.com/showdown/dist/showdown.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/moment.min.js"></script>
+      <script>
+        $.getJSON("news/articles.json", articleindex => {
+          $.getJSON("news/uuid.json", uuids => {
+            showdown.setFlavor('github');
+            let converter = new showdown.Converter({noHeaderId: true});
+            $.each(articleindex, (id, timestamp) => {
+              let article = document.createElement("article");
+              document.getElementById("articles").appendChild(article);
+              $.get(`news/articles/${id}.md`, md => {
+                let content = converter.makeHtml(md);
+                let regex = /<!--\s*:(.*):\s*(.*?)-->.*<!--\s*:(.*):\s*(.*?)-->/gs.exec(content)
+                let title, author;
+                if (!regex) {title = "id"; author = "???";}
+                else {
+                  title = regex[1] == "title" ? regex[2] : regex[3] == "title" ? regex[4] : id;
+                  author = regex[1] == "author" ? regex[2] : regex[3] == "author" ? regex[4] : "???";
+                }
+
+                article.innerHTML = document.querySelector("article#template").innerHTML;
+                article.querySelector(".title").innerHTML = title;
+                article.querySelector(".nameimg").setAttribute("src", `https://crafatar.com/avatars/${uuids[author] !== undefined ? uuids[author] : "00000000000000000000000000000000"}?overlay&default=MHF_Steve`)
+                article.querySelector(".name").innerHTML = author;
+                article.querySelector(".date").innerHTML = moment(timestamp).format("D MMM YYYY HH:mm");
+                article.querySelector(".content").innerHTML = content;
+              });
+            });
+          });
+        });
+      </script>
+      <article hidden id="template">
+        <span class="title"></span><br>
         <span class="articleinfo">by
-          <img class="nameimg" src="https://crafatar.com/avatars/7e96f1a3d9be4ca8a2aca67f49c6095e?overlay">
-          <span class="name">__7d</span> on
-          <span class="date">27 Sep 2021 05:27 UTC</span>
+          <img class="nameimg" src="">
+          <span class="name"></span> on
+          <span class="date"></span>
         </span><br>
-        <div class="content">
-          <p>Here are the topics we discussed and the changes made during the (2-person) monthly staff meeting:</p>
-          <h1>Policies on shared airports</h1>
-          <p>Concerns were raised by __7d over how shared airport allocations would work, if only one of the cities were to have more than 100 buildings.
-          The rules were hence changed so that if just one city has over 100 buildings, the max airport size would be that of all towns/cities shared, not just the one with over 100 buildings.</p>
-          <h1>Helis, seaplanes & blimps</h1>
-          <p>Helicopters and seaplanes would be allowed for passenger transport. However, blimps would only be used for advertising.</p>
-          <h1>Ferries & Watercraft</h1>
-          <p>The rules on cruise ships will be expanded to include all watercraft, since ferries are effectively mini cruise ships.</p>
-          <p>However, ferry routes would only be legal if they connect two places within 500 metres.</p>
-          <h1>ICAO codes and wards</h1>
-          <p>Wards will be implemented when the world is finished. As for code standard, that would be voted on in the future.</p>
-          <h1>Media channels</h1>
-          <p>All five media channels will be linked to five nee channels ingame.</p>
-          <h1>New Spawn City Airport</h1>
-          <p>The original alignment is vertical; however, with its massive size it was decided that it will be built horizontally instead.</p>
-          <p>Additionally New Spawn City will be built on the coast because water.</p>
-          <h1>Ranking system</h1>
-          <p>Concerns were also brought up by __7d, as if there are a lot of builders online the entire chat would be filled with "[Builder]" and no other prefix.</p>
-          <p>Therefore it was decided that a numbering system would be used as ranks, from 1 through 12. It would appear as "[Builder][n]" in chat, where n is the number.</p>
-          <p>The number is dependent on the building count of the largest town owned by the player, and is determined as follows:
-          <ol>
-            <li>Less than 5 town buildings</li>
-            <li>5 buildings</li>
-            <li>10 buildings</li>
-            <li>15 buildings</li>
-            <li>20 buildings</li>
-            <li>25 buildings</li>
-            <li>30 buildings</li>
-            <li>40 buildings</li>
-            <li>50 buildings</li>
-            <li>60 buildings</li>
-            <li>75 buildings</li>
-            <li>100+ buildings</li>
-          </ol></p>
-          <h1>Railways</h1>
-          <p>Only minecart/traincart lines are allowed between close cities. No intercity warprail is allowed.</p>
-          <h1>OG rank</h1>
-          <p>Will not be implemented, as everyone who would have the rank would be members of the MRT which is a bit biased.</p>
-          <p>However, thise who help with the spawn city airport will get their name on the front page of the website, as well as at the fountain at spawn.</p>
-          <h1>airplane add details</h1>
-          <p>airplane add details</p>
-        </div>
-        <hr style="border-style: solid; color: #555; background-color: #555;">
-       </article>
-      <article>
-        <span class="title">First post on the website</span><br>
-        <span class="articleinfo">by
-          <img class="nameimg" src="https://crafatar.com/avatars/7e96f1a3d9be4ca8a2aca67f49c6095e?overlay">
-          <span class="name">__7d</span> on
-          <span class="date">24 Sep 2021 10:21 UTC</span>
-        </span><br>
-        <div class="content">
-          <p>Hi everyone, this is the first post on the News page.</p>
-          <p>This post was initially written statically. Soon it will be transferred onto dynamic loading and rendering from markdown.</p>
-          <p>In the meantime, thanks for checking out the website :D</p>
-          <p><i>-- __7d</i></p>
-        </div>
+        <div class="content"></div>
         <hr style="border-style: solid; color: #555; background-color: #555;">
       </article>
     </section>
