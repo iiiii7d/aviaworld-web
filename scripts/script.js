@@ -29,7 +29,7 @@ function setupPage() {
     yall();
     document.querySelectorAll('a').forEach(anchor => {
         anchor.addEventListener('click', e => {
-            let href = anchor.getAttribute("href")
+            let href = anchor.getAttribute("href");
             //e.preventDefault();
             if (href.startsWith("#")) {
                 e.preventDefault();

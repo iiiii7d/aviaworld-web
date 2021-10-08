@@ -58,7 +58,7 @@
         $.getJSON("news/uuid.json", uuids => {
           document.querySelectorAll(".card").forEach(card => {
             let uname = card.querySelector(".uname").innerHTML;
-            card.querySelector(".cardimg").setAttribute("src", `https://crafatar.com/avatars/${uuids[uname] !== undefined ? uuids[uname] : "00000000000000000000000000000000"}?overlay&default=MHF_Steve`)
+            card.querySelector(".cardimg").setAttribute("src", `https://crafatar.com/avatars/${uuids[uname] !== undefined ? uuids[uname] : "00000000000000000000000000000000"}?overlay&default=MHF_Steve`);
           });
         });
       </script>
